@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  MorseCode
 //
-//  Created by Павел Осипенко on 31/07/16.
+//  Created by Pavel Osipenko on 31/07/16.
 //  Copyright © 2016 P.Osipenko. All rights reserved.
 //
 
