@@ -12,7 +12,6 @@
 		86F2DC491D4E6171006FF324 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86F2DC471D4E6171006FF324 /* Main.storyboard */; };
 		86F2DC4B1D4E6171006FF324 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86F2DC4A1D4E6171006FF324 /* Assets.xcassets */; };
 		86F2DC4E1D4E6171006FF324 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86F2DC4C1D4E6171006FF324 /* LaunchScreen.storyboard */; };
-		86F2DC561D4E6241006FF324 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 86F2DC551D4E6241006FF324 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -139,7 +138,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86F2DC561D4E6241006FF324 /* README.md in Sources */,
 				86F2DC461D4E6171006FF324 /* ViewController.swift in Sources */,
 				86F2DC441D4E6171006FF324 /* AppDelegate.swift in Sources */,
 			);
@@ -291,6 +289,7 @@
 				86F2DC541D4E6171006FF324 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

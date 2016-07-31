@@ -16,12 +16,87 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WPl-JM-FBg">
+                                <rect key="frame" x="20" y="28" width="33" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="lrO-oc-Cl7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type your text here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bn9-c6-280">
+                                <rect key="frame" x="20" y="57" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="alphabet"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Morse code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qd4-6U-kTL">
+                                <rect key="frame" x="20" y="103" width="89" height="20"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Oe3-f8-ygG">
+                                <rect key="frame" x="20" y="131" width="560" height="90"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="pCs-5i-Iu0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6S6-5d-b7N">
+                                <rect key="frame" x="20" y="237" width="170" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="170" id="Yxz-K8-kHe"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Sound"/>
+                                    <segment title="Light"/>
+                                </segments>
+                                <connections>
+                                    <action selector="outputTypeChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="3Bn-1j-BZ5"/>
+                                </connections>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mtY-xQ-RRE">
+                                <rect key="frame" x="214" y="236" width="140" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="140" id="Ipj-qX-6Gj"/>
+                                </constraints>
+                                <state key="normal" title="Play Code"/>
+                                <connections>
+                                    <action selector="playMorseCode:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XIs-rX-gA5"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mtY-xQ-RRE" firstAttribute="leading" secondItem="6S6-5d-b7N" secondAttribute="trailing" constant="24" id="0EM-Tz-E0W"/>
+                            <constraint firstItem="6S6-5d-b7N" firstAttribute="top" secondItem="Oe3-f8-ygG" secondAttribute="bottom" constant="16" id="44s-cE-Mx5"/>
+                            <constraint firstItem="WPl-JM-FBg" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="Bx5-ac-oGE"/>
+                            <constraint firstItem="WPl-JM-FBg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="CI2-bf-38I"/>
+                            <constraint firstItem="bn9-c6-280" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="E3E-8b-Y3T"/>
+                            <constraint firstAttribute="trailing" secondItem="bn9-c6-280" secondAttribute="trailing" constant="20" id="EfM-G2-dNg"/>
+                            <constraint firstItem="Oe3-f8-ygG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="G3w-jU-oV1"/>
+                            <constraint firstAttribute="trailing" secondItem="Oe3-f8-ygG" secondAttribute="trailing" constant="20" id="GTI-AS-ezf"/>
+                            <constraint firstItem="6S6-5d-b7N" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="Q49-D3-8fy"/>
+                            <constraint firstItem="Oe3-f8-ygG" firstAttribute="top" secondItem="qd4-6U-kTL" secondAttribute="bottom" constant="8" symbolic="YES" id="aM1-FN-l1O"/>
+                            <constraint firstItem="bn9-c6-280" firstAttribute="top" secondItem="WPl-JM-FBg" secondAttribute="bottom" constant="8" id="eMR-ap-Gk3"/>
+                            <constraint firstItem="mtY-xQ-RRE" firstAttribute="centerY" secondItem="6S6-5d-b7N" secondAttribute="centerY" id="f8I-Xg-qtj"/>
+                            <constraint firstItem="qd4-6U-kTL" firstAttribute="top" secondItem="bn9-c6-280" secondAttribute="bottom" constant="16" id="oFa-Bf-2gs"/>
+                            <constraint firstItem="qd4-6U-kTL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="vva-Wv-z8B"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="morseCodeText" destination="Oe3-f8-ygG" id="FFN-Z6-400"/>
+                        <outlet property="outputControl" destination="6S6-5d-b7N" id="hsU-pL-q2N"/>
+                        <outlet property="textField" destination="bn9-c6-280" id="ulu-VG-FQa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="383" y="478"/>
+            <point key="canvasLocation" x="460" y="479"/>
         </scene>
     </scenes>
 </document>
