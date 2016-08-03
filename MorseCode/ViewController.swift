@@ -33,6 +33,9 @@ class ViewController: UIViewController {
     // Dispose of any resources that can be recreated.
   }
   
+  @IBAction func backgroundTapped(sender: UITapGestureRecognizer) {
+    view.endEditing(true)
+  }
   
   @IBAction func outputTypeChanged(sender: UISegmentedControl) {
     switch sender.selectedSegmentIndex {
@@ -47,7 +50,20 @@ class ViewController: UIViewController {
   }
   
   func updateMorseCodeText() {
-    morseCodeText.text = sourceText ?? ""
+    // morseCodeText.text = sourceText ?? ""
+    guard let source = sourceText else {
+      return
+    }
+    do {
+      let encodedText = try MorseCoder.encode(text: source)
+      morseCodeText.text = encodedText
+    } catch MorseCoder.Error.InvalidCharacter(let character) {
+      let alertController = UIAlertController(title: "Error", message: "We can't encode because this character - '\(character)' is unknown.", preferredStyle: .Alert)
+      alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+      presentViewController(alertController, animated: true, completion: nil)
+    } catch {
+      print("Error!")
+    }
   }
 }
 
@@ -76,7 +92,7 @@ extension ViewController: UITextFieldDelegate {
   }
   
   func textFieldShouldClear(textField: UITextField) -> Bool {
-    sourceText = nil
+    sourceText = ""
     return true
   }
   

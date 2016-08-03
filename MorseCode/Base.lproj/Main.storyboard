@@ -87,6 +87,9 @@
                             <constraint firstItem="qd4-6U-kTL" firstAttribute="top" secondItem="bn9-c6-280" secondAttribute="bottom" constant="16" id="oFa-Bf-2gs"/>
                             <constraint firstItem="qd4-6U-kTL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="vva-Wv-z8B"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="311-gX-TNw" appends="YES" id="LGk-Yc-HEm"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="morseCodeText" destination="Oe3-f8-ygG" id="FFN-Z6-400"/>
@@ -95,6 +98,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="311-gX-TNw">
+                    <connections>
+                        <action selector="backgroundTapped:" destination="BYZ-38-t0r" id="9Um-Oo-NtE"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="460" y="479"/>
         </scene>
