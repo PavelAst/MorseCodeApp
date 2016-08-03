@@ -50,19 +50,16 @@ class ViewController: UIViewController {
   }
   
   func updateMorseCodeText() {
-    // morseCodeText.text = sourceText ?? ""
     guard let source = sourceText else {
       return
     }
-    do {
-      let encodedText = try MorseCoder.encode(text: source)
-      morseCodeText.text = encodedText
-    } catch MorseCoder.Error.InvalidCharacter(let character) {
-      let alertController = UIAlertController(title: "Error", message: "We can't encode because this character - '\(character)' is unknown.", preferredStyle: .Alert)
+
+    if let morseCode = MorseCoder(phrase: source) {
+      morseCodeText.text = morseCode.getStringRepresentation()
+    } else {
+      let alertController = UIAlertController(title: "Error", message: "We can't encode because this character is unknown.", preferredStyle: .Alert)
       alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
       presentViewController(alertController, animated: true, completion: nil)
-    } catch {
-      print("Error!")
     }
   }
 }
@@ -80,7 +77,7 @@ extension ViewController: UITextFieldDelegate {
     sourceText = newText as String
     
     // returning true gives the text field permission to change its text
-    return newText.length <= 30;
+    return newText.length <= 40;
   }
   
   func textFieldDidBeginEditing(textField: UITextField) {

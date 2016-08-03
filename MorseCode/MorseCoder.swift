@@ -11,7 +11,7 @@ import Foundation
 enum Sygnal: String {
   case Dot   = "."
   case Dash  = "-"
-  case Space = " "
+  case Space = "  "
 }
 
 struct MorseCode: CustomStringConvertible {
@@ -28,11 +28,7 @@ struct MorseCode: CustomStringConvertible {
 
 struct MorseCoder {
   
-  enum Error: ErrorType {
-    case InvalidCharacter(Character)
-  }
-  
-  private static let codeSignals: [Character: MorseCode] = [
+  private let codeSignals: [Character: MorseCode] = [
     "1": MorseCode(code: [.Dot,  .Dash, .Dash, .Dash, .Dash]),
     "2": MorseCode(code: [.Dot,  .Dot,  .Dash, .Dash, .Dash]),
     "3": MorseCode(code: [.Dot,  .Dot,  .Dot,  .Dash, .Dash]),
@@ -88,17 +84,23 @@ struct MorseCoder {
     " ": MorseCode(code: [.Space])
   ]
   
-  static func encode(text text: String) throws -> String {
-    var encodedString = ""
-    
-    for character in text.lowercaseString.characters {
+  var morseSequence = [MorseCode]()
+  
+  init? (phrase: String) {
+    for character in phrase.lowercaseString.characters {
       if let code = codeSignals[character] {
-        encodedString += code.description
+        morseSequence.append(code)
       } else {
-        throw Error.InvalidCharacter(character)
+        return nil
       }
     }
-    
+  }
+  
+  func getStringRepresentation() -> String {
+    var encodedString = ""
+    for code in morseSequence {
+      encodedString += "\(code.description) "
+    }
     return encodedString
   }
   
