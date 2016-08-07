@@ -11,10 +11,10 @@ import Foundation
 enum Sygnal: String {
   case Dot   = "."
   case Dash  = "-"
-  case Space = "  "
+  case Space = "   "
 }
 
-struct MorseCode: CustomStringConvertible {
+struct MorseSymbol: CustomStringConvertible {
   var code: [Sygnal]
   
   var description: String {
@@ -24,67 +24,85 @@ struct MorseCode: CustomStringConvertible {
     }
     return text
   }
+  
+  func getBinaryCode() -> [Bool] {
+    if code == [.Space] {
+      return [false]
+    }
+    var binary = [Bool]()
+    for (index, sygnal) in code.enumerate() {
+      if sygnal == .Dot {
+        binary += [true]
+      } else if sygnal == .Dash {
+        binary += [true, true, true]
+      }
+      if index != (code.endIndex - 1) {
+        binary += [false]
+      }
+    }
+    return binary
+  }
 }
 
 struct MorseCoder {
   
-  private let codeSignals: [Character: MorseCode] = [
-    "1": MorseCode(code: [.Dot,  .Dash, .Dash, .Dash, .Dash]),
-    "2": MorseCode(code: [.Dot,  .Dot,  .Dash, .Dash, .Dash]),
-    "3": MorseCode(code: [.Dot,  .Dot,  .Dot,  .Dash, .Dash]),
-    "4": MorseCode(code: [.Dot,  .Dot,  .Dot,  .Dot,  .Dash]),
-    "5": MorseCode(code: [.Dot,  .Dot,  .Dot,  .Dot,  .Dot]),
-    "6": MorseCode(code: [.Dash, .Dot,  .Dot,  .Dot,  .Dot]),
-    "7": MorseCode(code: [.Dash, .Dash, .Dot,  .Dot,  .Dot]),
-    "8": MorseCode(code: [.Dash, .Dash, .Dash, .Dot,  .Dot]),
-    "9": MorseCode(code: [.Dash, .Dash, .Dash, .Dash, .Dot]),
-    "0": MorseCode(code: [.Dash, .Dash, .Dash, .Dash, .Dash]),
-    "a": MorseCode(code: [.Dot,  .Dash]),
-    "b": MorseCode(code: [.Dash, .Dot,  .Dot,  .Dot]),
-    "c": MorseCode(code: [.Dash, .Dot,  .Dash, .Dot]),
-    "d": MorseCode(code: [.Dash, .Dot,  .Dot]),
-    "e": MorseCode(code: [.Dot]),
-    "f": MorseCode(code: [.Dot,  .Dot,  .Dash, .Dot]),
-    "g": MorseCode(code: [.Dash, .Dash, .Dot]),
-    "h": MorseCode(code: [.Dot,  .Dot,  .Dot,  .Dot]),
-    "i": MorseCode(code: [.Dot,  .Dot]),
-    "j": MorseCode(code: [.Dot,  .Dash, .Dash, .Dash]),
-    "k": MorseCode(code: [.Dash, .Dot,  .Dash]),
-    "l": MorseCode(code: [.Dot,  .Dash, .Dot, .Dot]),
-    "m": MorseCode(code: [.Dash, .Dash]),
-    "n": MorseCode(code: [.Dash, .Dot]),
-    "o": MorseCode(code: [.Dash, .Dash, .Dash]),
-    "p": MorseCode(code: [.Dot,  .Dash, .Dash, .Dot]),
-    "q": MorseCode(code: [.Dash, .Dash, .Dot,  .Dash]),
-    "r": MorseCode(code: [.Dot, .Dash, .Dot]),
-    "s": MorseCode(code: [.Dot,  .Dot,  .Dot]),
-    "t": MorseCode(code: [.Dash]),
-    "u": MorseCode(code: [.Dot,  .Dot,  .Dash]),
-    "v": MorseCode(code: [.Dot, .Dot,  .Dot,  .Dash]),
-    "w": MorseCode(code: [.Dot,  .Dash,  .Dash]),
-    "x": MorseCode(code: [.Dash, .Dot,  .Dot,  .Dash]),
-    "y": MorseCode(code: [.Dash,  .Dot,  .Dash, .Dash]),
-    "z": MorseCode(code: [.Dash, .Dash, .Dot,  .Dot]),
-    ".": MorseCode(code: [.Dot,  .Dash, .Dot, .Dash, .Dot, .Dash]),
-    ",": MorseCode(code: [.Dash, .Dash, .Dot,  .Dot, .Dash, .Dash]),
-    ":": MorseCode(code: [.Dash, .Dash, .Dash, .Dot,  .Dot, .Dot]),
-    ";": MorseCode(code: [.Dash, .Dot, .Dash, .Dot,  .Dash, .Dot]),
-    "?": MorseCode(code: [.Dot, .Dot,  .Dash, .Dash, .Dot, .Dot]),
-    "!": MorseCode(code: [.Dash, .Dash, .Dot,  .Dot, .Dash, .Dash]),
-    "'": MorseCode(code: [.Dot,  .Dash, .Dash, .Dash, .Dash, .Dot]),
-    "-": MorseCode(code: [.Dash, .Dot,  .Dot, .Dot, .Dot, .Dash]),
-    "/": MorseCode(code: [.Dash, .Dot, .Dot,  .Dash, .Dot]),
-    "(": MorseCode(code: [.Dash, .Dot,  .Dash, .Dash, .Dot]),
-    ")": MorseCode(code: [.Dash, .Dot,  .Dash, .Dash, .Dot, .Dash]),
-    "\"": MorseCode(code: [.Dot,  .Dash, .Dot, .Dot, .Dash, .Dot]),
-    "=": MorseCode(code: [.Dash, .Dot,  .Dot, .Dot, .Dash]),
-    "+": MorseCode(code: [.Dot,  .Dash, .Dot, .Dash, .Dot]),
-    "*": MorseCode(code: [.Dash, .Dot,  .Dot, .Dash]),
-    "@": MorseCode(code: [.Dot,  .Dash, .Dash, .Dot, .Dash, .Dot]),
-    " ": MorseCode(code: [.Space])
+  private let codeSignals: [Character: MorseSymbol] = [
+    "1": MorseSymbol(code: [.Dot,  .Dash, .Dash, .Dash, .Dash]),
+    "2": MorseSymbol(code: [.Dot,  .Dot,  .Dash, .Dash, .Dash]),
+    "3": MorseSymbol(code: [.Dot,  .Dot,  .Dot,  .Dash, .Dash]),
+    "4": MorseSymbol(code: [.Dot,  .Dot,  .Dot,  .Dot,  .Dash]),
+    "5": MorseSymbol(code: [.Dot,  .Dot,  .Dot,  .Dot,  .Dot]),
+    "6": MorseSymbol(code: [.Dash, .Dot,  .Dot,  .Dot,  .Dot]),
+    "7": MorseSymbol(code: [.Dash, .Dash, .Dot,  .Dot,  .Dot]),
+    "8": MorseSymbol(code: [.Dash, .Dash, .Dash, .Dot,  .Dot]),
+    "9": MorseSymbol(code: [.Dash, .Dash, .Dash, .Dash, .Dot]),
+    "0": MorseSymbol(code: [.Dash, .Dash, .Dash, .Dash, .Dash]),
+    "a": MorseSymbol(code: [.Dot,  .Dash]),
+    "b": MorseSymbol(code: [.Dash, .Dot,  .Dot,  .Dot]),
+    "c": MorseSymbol(code: [.Dash, .Dot,  .Dash, .Dot]),
+    "d": MorseSymbol(code: [.Dash, .Dot,  .Dot]),
+    "e": MorseSymbol(code: [.Dot]),
+    "f": MorseSymbol(code: [.Dot,  .Dot,  .Dash, .Dot]),
+    "g": MorseSymbol(code: [.Dash, .Dash, .Dot]),
+    "h": MorseSymbol(code: [.Dot,  .Dot,  .Dot,  .Dot]),
+    "i": MorseSymbol(code: [.Dot,  .Dot]),
+    "j": MorseSymbol(code: [.Dot,  .Dash, .Dash, .Dash]),
+    "k": MorseSymbol(code: [.Dash, .Dot,  .Dash]),
+    "l": MorseSymbol(code: [.Dot,  .Dash, .Dot, .Dot]),
+    "m": MorseSymbol(code: [.Dash, .Dash]),
+    "n": MorseSymbol(code: [.Dash, .Dot]),
+    "o": MorseSymbol(code: [.Dash, .Dash, .Dash]),
+    "p": MorseSymbol(code: [.Dot,  .Dash, .Dash, .Dot]),
+    "q": MorseSymbol(code: [.Dash, .Dash, .Dot,  .Dash]),
+    "r": MorseSymbol(code: [.Dot, .Dash, .Dot]),
+    "s": MorseSymbol(code: [.Dot,  .Dot,  .Dot]),
+    "t": MorseSymbol(code: [.Dash]),
+    "u": MorseSymbol(code: [.Dot,  .Dot,  .Dash]),
+    "v": MorseSymbol(code: [.Dot, .Dot,  .Dot,  .Dash]),
+    "w": MorseSymbol(code: [.Dot,  .Dash,  .Dash]),
+    "x": MorseSymbol(code: [.Dash, .Dot,  .Dot,  .Dash]),
+    "y": MorseSymbol(code: [.Dash,  .Dot,  .Dash, .Dash]),
+    "z": MorseSymbol(code: [.Dash, .Dash, .Dot,  .Dot]),
+    ".": MorseSymbol(code: [.Dot,  .Dash, .Dot, .Dash, .Dot, .Dash]),
+    ",": MorseSymbol(code: [.Dash, .Dash, .Dot,  .Dot, .Dash, .Dash]),
+    ":": MorseSymbol(code: [.Dash, .Dash, .Dash, .Dot,  .Dot, .Dot]),
+    ";": MorseSymbol(code: [.Dash, .Dot, .Dash, .Dot,  .Dash, .Dot]),
+    "?": MorseSymbol(code: [.Dot, .Dot,  .Dash, .Dash, .Dot, .Dot]),
+    "!": MorseSymbol(code: [.Dash, .Dash, .Dot,  .Dot, .Dash, .Dash]),
+    "'": MorseSymbol(code: [.Dot,  .Dash, .Dash, .Dash, .Dash, .Dot]),
+    "-": MorseSymbol(code: [.Dash, .Dot,  .Dot, .Dot, .Dot, .Dash]),
+    "/": MorseSymbol(code: [.Dash, .Dot, .Dot,  .Dash, .Dot]),
+    "(": MorseSymbol(code: [.Dash, .Dot,  .Dash, .Dash, .Dot]),
+    ")": MorseSymbol(code: [.Dash, .Dot,  .Dash, .Dash, .Dot, .Dash]),
+    "\"": MorseSymbol(code: [.Dot,  .Dash, .Dot, .Dot, .Dash, .Dot]),
+    "=": MorseSymbol(code: [.Dash, .Dot,  .Dot, .Dot, .Dash]),
+    "+": MorseSymbol(code: [.Dot,  .Dash, .Dot, .Dash, .Dot]),
+    "*": MorseSymbol(code: [.Dash, .Dot,  .Dot, .Dash]),
+    "@": MorseSymbol(code: [.Dot,  .Dash, .Dash, .Dot, .Dash, .Dot]),
+    " ": MorseSymbol(code: [.Space])
   ]
   
-  var morseSequence = [MorseCode]()
+  var morseSequence = [MorseSymbol]()
   
   init? (phrase: String) {
     for character in phrase.lowercaseString.characters {
@@ -97,11 +115,20 @@ struct MorseCoder {
   }
   
   func getStringRepresentation() -> String {
-    var encodedString = ""
-    for code in morseSequence {
-      encodedString += "\(code.description) "
+    return morseSequence.reduce("") { all, current in
+      all + "\(current.description) "
     }
-    return encodedString
+  }
+  
+  func getBinaryRepresentation() -> [Bool] {
+    var binaryList = [Bool]()
+    for (index, symbol) in morseSequence.enumerate() {
+      binaryList += symbol.getBinaryCode()
+      if index != (morseSequence.endIndex - 1) {
+        binaryList += [false, false, false]
+      }
+    }
+    return binaryList
   }
   
 }

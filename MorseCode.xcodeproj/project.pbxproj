@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		863185281D513E6E00668330 /* MorseCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863185271D513E6E00668330 /* MorseCoder.swift */; };
+		868ADE791D56884F005BE4A8 /* beep0200.wav in Resources */ = {isa = PBXBuildFile; fileRef = 868ADE781D56884F005BE4A8 /* beep0200.wav */; };
+		868ADE7B1D568856005BE4A8 /* pause0200.wav in Resources */ = {isa = PBXBuildFile; fileRef = 868ADE7A1D568856005BE4A8 /* pause0200.wav */; };
+		86A7B14C1D57DA3C007C7E79 /* beep240.wav in Resources */ = {isa = PBXBuildFile; fileRef = 86A7B14B1D57DA3C007C7E79 /* beep240.wav */; };
+		86A7B14E1D57DA48007C7E79 /* beep080.wav in Resources */ = {isa = PBXBuildFile; fileRef = 86A7B14D1D57DA48007C7E79 /* beep080.wav */; };
+		86BD181B1D54F26600442364 /* beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 86BD181A1D54F26600442364 /* beep.wav */; };
 		86F2DC441D4E6171006FF324 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F2DC431D4E6171006FF324 /* AppDelegate.swift */; };
 		86F2DC461D4E6171006FF324 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F2DC451D4E6171006FF324 /* ViewController.swift */; };
 		86F2DC491D4E6171006FF324 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86F2DC471D4E6171006FF324 /* Main.storyboard */; };
@@ -16,9 +21,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		863185271D513E6E00668330 /* MorseCoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorseCoder.swift; sourceTree = "<group>"; };
+		863185271D513E6E00668330 /* MorseCoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MorseCoder.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		868ADE781D56884F005BE4A8 /* beep0200.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beep0200.wav; sourceTree = "<group>"; };
+		868ADE7A1D568856005BE4A8 /* pause0200.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pause0200.wav; sourceTree = "<group>"; };
+		86A7B14B1D57DA3C007C7E79 /* beep240.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beep240.wav; sourceTree = "<group>"; };
+		86A7B14D1D57DA48007C7E79 /* beep080.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beep080.wav; sourceTree = "<group>"; };
+		86BD181A1D54F26600442364 /* beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beep.wav; sourceTree = "<group>"; };
 		86F2DC401D4E6171006FF324 /* MorseCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MorseCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		86F2DC431D4E6171006FF324 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		86F2DC431D4E6171006FF324 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		86F2DC451D4E6171006FF324 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		86F2DC481D4E6171006FF324 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		86F2DC4A1D4E6171006FF324 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -65,6 +75,11 @@
 				86F2DC4A1D4E6171006FF324 /* Assets.xcassets */,
 				86F2DC4C1D4E6171006FF324 /* LaunchScreen.storyboard */,
 				86F2DC4F1D4E6171006FF324 /* Info.plist */,
+				86BD181A1D54F26600442364 /* beep.wav */,
+				868ADE781D56884F005BE4A8 /* beep0200.wav */,
+				868ADE7A1D568856005BE4A8 /* pause0200.wav */,
+				86A7B14B1D57DA3C007C7E79 /* beep240.wav */,
+				86A7B14D1D57DA48007C7E79 /* beep080.wav */,
 			);
 			path = MorseCode;
 			sourceTree = "<group>";
@@ -128,9 +143,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86BD181B1D54F26600442364 /* beep.wav in Resources */,
 				86F2DC4E1D4E6171006FF324 /* LaunchScreen.storyboard in Resources */,
 				86F2DC4B1D4E6171006FF324 /* Assets.xcassets in Resources */,
+				86A7B14E1D57DA48007C7E79 /* beep080.wav in Resources */,
+				86A7B14C1D57DA3C007C7E79 /* beep240.wav in Resources */,
+				868ADE7B1D568856005BE4A8 /* pause0200.wav in Resources */,
 				86F2DC491D4E6171006FF324 /* Main.storyboard in Resources */,
+				868ADE791D56884F005BE4A8 /* beep0200.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

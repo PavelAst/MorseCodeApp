@@ -59,7 +59,7 @@
                                     <action selector="outputTypeChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="3Bn-1j-BZ5"/>
                                 </connections>
                             </segmentedControl>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mtY-xQ-RRE">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mtY-xQ-RRE">
                                 <rect key="frame" x="214" y="236" width="140" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="140" id="Ipj-qX-6Gj"/>
@@ -94,6 +94,7 @@
                     <connections>
                         <outlet property="morseCodeText" destination="Oe3-f8-ygG" id="FFN-Z6-400"/>
                         <outlet property="outputControl" destination="6S6-5d-b7N" id="hsU-pL-q2N"/>
+                        <outlet property="playCodeButton" destination="mtY-xQ-RRE" id="TlQ-IV-74B"/>
                         <outlet property="textField" destination="bn9-c6-280" id="ulu-VG-FQa"/>
                     </connections>
                 </viewController>
