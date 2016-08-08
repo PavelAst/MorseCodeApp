@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import AVFoundation
+import AudioKit
 
 class ViewController: UIViewController {
   
@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     }
   }
   
-  var audioPlayer: AVAudioPlayer?
+  var oscillator = AKOscillator()
   var playSound = true
   private var timer = NSTimer()
   var binaryCode = [Bool]()
@@ -34,13 +34,9 @@ class ViewController: UIViewController {
     // Do any additional setup after loading the view, typically from a nib.
     textField.delegate = self
     
-    // initialize the audioPlayer
-    audioPlayer = setupAudioPlayer()
-  }
-  
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
+    // Prepare AudioKit
+    AudioKit.output = oscillator
+    AudioKit.start()
   }
   
   @IBAction func backgroundTapped(sender: UITapGestureRecognizer) {
@@ -61,11 +57,16 @@ class ViewController: UIViewController {
     if let morseCode = MorseCoder(phrase: sourceText!) {
       binaryCode = morseCode.getBinaryRepresentation()
       // print(binaryCode)
-      currentIndex = 0
       
-      timer = NSTimer.scheduledTimerWithTimeInterval(0.08, target: self, selector: #selector(ViewController.playSoundCode), userInfo: nil, repeats: true)
-
+      if playSound {
+        playCodeButton.enabled = false
+        oscillator.amplitude = 0.75
+        oscillator.frequency = 600
+        
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(ViewController.playSoundCode), userInfo: nil, repeats: true)
+      }
     }
+    
   }
   
   func updateMorseCodeText() {
@@ -83,37 +84,24 @@ class ViewController: UIViewController {
     }
   }
   
-  func setupAudioPlayer() -> AVAudioPlayer? {
-    var audioPlayer: AVAudioPlayer?
-    let audioFile = "beep080.wav"
-    let url = NSBundle.mainBundle().URLForResource(audioFile, withExtension: nil)
-    if (url == nil) {
-      print("Could not find file: \(audioFile)")
-      return nil
-    }
-    do {
-      audioPlayer = try AVAudioPlayer(contentsOfURL: url!)
-    } catch let error as NSError {
-      print("audioPlayer error - \(error.localizedDescription)")
-      audioPlayer = nil
-    }
-    return audioPlayer
-  }
-  
   func playSoundCode() {
     guard currentIndex < binaryCode.count else {
       timer.invalidate()
+      oscillator.stop()
+      currentIndex = 0
+      playCodeButton.enabled = true
       return
     }
     if binaryCode[currentIndex] {
-      if let player = audioPlayer {
-        player.numberOfLoops = 0
-        player.prepareToPlay()
-        player.currentTime = 0.0
-        player.play()
-      }
+      oscillator.start()
+    } else {
+      oscillator.stop()
     }
     currentIndex += 1
+  }
+  
+  func showLightsCode() {
+    
   }
   
 }

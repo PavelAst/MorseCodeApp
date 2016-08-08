@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B54A2EE2113427B53F1ADE0 /* Pods_MorseCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5DFC42DDE074010CDBB1B7F /* Pods_MorseCode.framework */; };
 		863185281D513E6E00668330 /* MorseCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863185271D513E6E00668330 /* MorseCoder.swift */; };
 		868ADE791D56884F005BE4A8 /* beep0200.wav in Resources */ = {isa = PBXBuildFile; fileRef = 868ADE781D56884F005BE4A8 /* beep0200.wav */; };
 		868ADE7B1D568856005BE4A8 /* pause0200.wav in Resources */ = {isa = PBXBuildFile; fileRef = 868ADE7A1D568856005BE4A8 /* pause0200.wav */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0303355BEA26B0B120B88B48 /* Pods-MorseCode.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MorseCode.release.xcconfig"; path = "Pods/Target Support Files/Pods-MorseCode/Pods-MorseCode.release.xcconfig"; sourceTree = "<group>"; };
 		863185271D513E6E00668330 /* MorseCoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MorseCoder.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		868ADE781D56884F005BE4A8 /* beep0200.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beep0200.wav; sourceTree = "<group>"; };
 		868ADE7A1D568856005BE4A8 /* pause0200.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pause0200.wav; sourceTree = "<group>"; };
@@ -35,6 +37,8 @@
 		86F2DC4D1D4E6171006FF324 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		86F2DC4F1D4E6171006FF324 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		86F2DC551D4E6241006FF324 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		A6CBB82E11175400DF626F07 /* Pods-MorseCode.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MorseCode.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MorseCode/Pods-MorseCode.debug.xcconfig"; sourceTree = "<group>"; };
+		F5DFC42DDE074010CDBB1B7F /* Pods_MorseCode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MorseCode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,18 +46,50 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B54A2EE2113427B53F1ADE0 /* Pods_MorseCode.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		101A859753EF196FFD00D0D2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F5DFC42DDE074010CDBB1B7F /* Pods_MorseCode.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1B4811A847BE8F45A31C106D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A6CBB82E11175400DF626F07 /* Pods-MorseCode.debug.xcconfig */,
+				0303355BEA26B0B120B88B48 /* Pods-MorseCode.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		86A7B14F1D57E4C7007C7E79 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				86BD181A1D54F26600442364 /* beep.wav */,
+				868ADE781D56884F005BE4A8 /* beep0200.wav */,
+				868ADE7A1D568856005BE4A8 /* pause0200.wav */,
+				86A7B14B1D57DA3C007C7E79 /* beep240.wav */,
+				86A7B14D1D57DA48007C7E79 /* beep080.wav */,
+			);
+			name = Sounds;
+			sourceTree = "<group>";
+		};
 		86F2DC371D4E6171006FF324 = {
 			isa = PBXGroup;
 			children = (
 				86F2DC551D4E6241006FF324 /* README.md */,
 				86F2DC421D4E6171006FF324 /* MorseCode */,
 				86F2DC411D4E6171006FF324 /* Products */,
+				1B4811A847BE8F45A31C106D /* Pods */,
+				101A859753EF196FFD00D0D2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -75,11 +111,7 @@
 				86F2DC4A1D4E6171006FF324 /* Assets.xcassets */,
 				86F2DC4C1D4E6171006FF324 /* LaunchScreen.storyboard */,
 				86F2DC4F1D4E6171006FF324 /* Info.plist */,
-				86BD181A1D54F26600442364 /* beep.wav */,
-				868ADE781D56884F005BE4A8 /* beep0200.wav */,
-				868ADE7A1D568856005BE4A8 /* pause0200.wav */,
-				86A7B14B1D57DA3C007C7E79 /* beep240.wav */,
-				86A7B14D1D57DA48007C7E79 /* beep080.wav */,
+				86A7B14F1D57E4C7007C7E79 /* Sounds */,
 			);
 			path = MorseCode;
 			sourceTree = "<group>";
@@ -91,9 +123,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 86F2DC521D4E6171006FF324 /* Build configuration list for PBXNativeTarget "MorseCode" */;
 			buildPhases = (
+				E07E71A2B70701163BF23145 /* 📦 Check Pods Manifest.lock */,
 				86F2DC3C1D4E6171006FF324 /* Sources */,
 				86F2DC3D1D4E6171006FF324 /* Frameworks */,
 				86F2DC3E1D4E6171006FF324 /* Resources */,
+				3CBF9F52503D759606E6439B /* 📦 Embed Pods Frameworks */,
+				CD061AC8FC18B9619A44F57F /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -155,6 +190,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3CBF9F52503D759606E6439B /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MorseCode/Pods-MorseCode-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CD061AC8FC18B9619A44F57F /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MorseCode/Pods-MorseCode-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E07E71A2B70701163BF23145 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		86F2DC3C1D4E6171006FF324 /* Sources */ = {
@@ -274,6 +357,7 @@
 		};
 		86F2DC531D4E6171006FF324 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A6CBB82E11175400DF626F07 /* Pods-MorseCode.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MorseCode/Info.plist;
@@ -285,6 +369,7 @@
 		};
 		86F2DC541D4E6171006FF324 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0303355BEA26B0B120B88B48 /* Pods-MorseCode.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MorseCode/Info.plist;
