@@ -24,7 +24,7 @@ class ViewController: UIViewController {
   
   var oscillator = AKOscillator()
   var playSound = true
-  private var timer = NSTimer()
+  fileprivate var timer = Timer()
   var binaryCode = [Bool]()
   
   var currentIndex = 0
@@ -39,11 +39,11 @@ class ViewController: UIViewController {
     AudioKit.start()
   }
   
-  @IBAction func backgroundTapped(sender: UITapGestureRecognizer) {
+  @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
     view.endEditing(true)
   }
   
-  @IBAction func outputTypeChanged(sender: UISegmentedControl) {
+  @IBAction func outputTypeChanged(_ sender: UISegmentedControl) {
     switch sender.selectedSegmentIndex {
     case 0: playSound = true
     case 1: playSound = false
@@ -51,7 +51,7 @@ class ViewController: UIViewController {
     }
   }
   
-  @IBAction func playMorseCode(sender: UIButton) {
+  @IBAction func playMorseCode(_ sender: UIButton) {
     textField.resignFirstResponder()
     
     if let morseCode = MorseCoder(phrase: sourceText!) {
@@ -59,11 +59,11 @@ class ViewController: UIViewController {
       // print(binaryCode)
       
       if playSound {
-        playCodeButton.enabled = false
+        playCodeButton.isEnabled = false
         oscillator.amplitude = 0.75
         oscillator.frequency = 600
         
-        timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(ViewController.playSoundCode), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(ViewController.playSoundCode), userInfo: nil, repeats: true)
       }
     }
     
@@ -76,11 +76,11 @@ class ViewController: UIViewController {
     
     if let morseCode = MorseCoder(phrase: source) {
       morseCodeText.text = morseCode.getStringRepresentation()
-      playCodeButton.enabled = true
+      playCodeButton.isEnabled = true
     } else {
-      let alertController = UIAlertController(title: "Error", message: "We can't encode because this character is unknown.", preferredStyle: .Alert)
-      alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-      presentViewController(alertController, animated: true, completion: nil)
+      let alertController = UIAlertController(title: "Error", message: "We can't encode because this character is unknown.", preferredStyle: .alert)
+      alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+      present(alertController, animated: true, completion: nil)
     }
   }
   
@@ -89,7 +89,7 @@ class ViewController: UIViewController {
       timer.invalidate()
       oscillator.stop()
       currentIndex = 0
-      playCodeButton.enabled = true
+      playCodeButton.isEnabled = true
       return
     }
     if binaryCode[currentIndex] {
@@ -110,11 +110,11 @@ class ViewController: UIViewController {
 
 extension ViewController: UITextFieldDelegate {
   
-  func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
     
     // Figure out what the new text will be, if we return true
-    var newText: NSString = textField.text!
-    newText = newText.stringByReplacingCharactersInRange(range, withString: string)
+    var newText: NSString = textField.text! as NSString
+    newText = newText.replacingCharacters(in: range, with: string) as NSString
     
     sourceText = newText as String
     
@@ -122,21 +122,21 @@ extension ViewController: UITextFieldDelegate {
     return newText.length <= 40;
   }
   
-  func textFieldDidBeginEditing(textField: UITextField) {
+  func textFieldDidBeginEditing(_ textField: UITextField) {
     textField.backgroundColor = UIColor.init(red: 222.0/255.0, green: 242.0/255.0, blue: 255.0/255.0, alpha: 1.0)
   }
   
-  func textFieldDidEndEditing(textField: UITextField) {
-    textField.backgroundColor = UIColor.whiteColor()
+  func textFieldDidEndEditing(_ textField: UITextField) {
+    textField.backgroundColor = UIColor.white
   }
   
-  func textFieldShouldClear(textField: UITextField) -> Bool {
+  func textFieldShouldClear(_ textField: UITextField) -> Bool {
     sourceText = ""
-    playCodeButton.enabled = false
+    playCodeButton.isEnabled = false
     return true
   }
   
-  func textFieldShouldReturn(textField: UITextField) -> Bool {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     textField.resignFirstResponder()
     return true
   }

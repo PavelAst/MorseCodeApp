@@ -30,7 +30,7 @@ struct MorseSymbol: CustomStringConvertible {
       return [false]
     }
     var binary = [Bool]()
-    for (index, sygnal) in code.enumerate() {
+    for (index, sygnal) in code.enumerated() {
       if sygnal == .Dot {
         binary += [true]
       } else if sygnal == .Dash {
@@ -46,7 +46,7 @@ struct MorseSymbol: CustomStringConvertible {
 
 struct MorseCoder {
   
-  private let codeSignals: [Character: MorseSymbol] = [
+  fileprivate let codeSignals: [Character: MorseSymbol] = [
     "1": MorseSymbol(code: [.Dot,  .Dash, .Dash, .Dash, .Dash]),
     "2": MorseSymbol(code: [.Dot,  .Dot,  .Dash, .Dash, .Dash]),
     "3": MorseSymbol(code: [.Dot,  .Dot,  .Dot,  .Dash, .Dash]),
@@ -105,7 +105,7 @@ struct MorseCoder {
   var morseSequence = [MorseSymbol]()
   
   init? (phrase: String) {
-    for character in phrase.lowercaseString.characters {
+    for character in phrase.lowercased().characters {
       if let code = codeSignals[character] {
         morseSequence.append(code)
       } else {
@@ -122,7 +122,7 @@ struct MorseCoder {
   
   func getBinaryRepresentation() -> [Bool] {
     var binaryList = [Bool]()
-    for (index, symbol) in morseSequence.enumerate() {
+    for (index, symbol) in morseSequence.enumerated() {
       binaryList += symbol.getBinaryCode()
       if index != (morseSequence.endIndex - 1) {
         binaryList += [false, false, false]
